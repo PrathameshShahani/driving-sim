@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Driving Sim</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+    <script
+        src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+    <script src="./game.js"></script>
+    <script src="./wheel.js"></script>
+</head>
+
+<body>
+    <a-scene id="scene" background="color:#40ABF1;" game-play>
+        <!--GameOVer-->
+        <a-entity id="gameover" position="0 2.2 -7"
+            text="font: exo2bold;align:center; width:70; height:15; value:Game Over!" visible="false"></a-entity>
+
+
+        <a-assets>
+            <a-asset-item id="city-model" src="./assets/city/scene.gltf"></a-asset-item>
+            <a-asset-item id="wheel" src="./assets/wheel/scene.gltf"></a-asset-item>
+            <audio id="driving" src="./assets/sound/car_sound.mp3"></audio>
+        </a-assets>
+
+        <a-entity id="sound" sound="src: #driving; autoplay:false; volume:5; loop:true;"></a-entity>
+        <a-entity id="city" gltf-model="#city-model" position="0 0 0" rotation="0 0 0"
+            scale="0.001 0.001 0.001"></a-entity>
+        <a-entity camera="active:true;" id="camera" position="0 0.4 0" rotation="0 0 0" wasd-controls wheel
+            look-controls>
+            <a-entity id="drivetext" position="-4 2.3 -3" text="font:exo2bold;align:center; width:8; value:Driving Sim;"
+                visible="true"></a-entity>
+            <!--Time-->
+            <a-entity id="timer" position="-4.2 2 -3" text="font: exo2bold;align:center; width:8; height:5; value:00:00"
+                visible="true"></a-entity>
+            <!--Speed Text-->
+            <a-entity id="speed" position="3.5 2.2 -3" text="font: exo2bold;align:center; width:8; height:5; value:0"
+                visible="true"></a-entity>
+            <a-entity id="speedkmh" position="4.3 2.2 -3"
+                text="font: exo2bold;align:center; width:8; height:5; value:km/h" visible="true"></a-entity>
+            <!--Steering Wheel-->
+            <a-entity id="wheel-scene" gltf-model="#wheel" position="0.6 -0.2 -0.5" scale="0.01 0.01 0.01"
+                rotation="90 0 20" visible="true"></a-entity>
+
+
+
+
+            <a-box id="break-pedal" src="./assets/break.png" color="gray" position="-0.4 -0.2 -0.3"
+                scale="0.05 0.05 0.05" rotation="0 90 0" width="0.01" height="1" visible="true"></a-box>
+            <a-box id="accelerator-pedal" src="./assets/accelarator.png" color="gray" position="-0.34 -0.2 -0.3"
+                scale="0.05 0.05 0.05" rotation="0 90 0" width="0.01" height="1" visible="true"></a-box>
+        </a-entity>
+
+
+    </a-scene>
+</body>
+
+</html>
